@@ -55,6 +55,10 @@ function render() {
   leftImage.src = Images.all[leftIndex].src;
   centerImage.src = Images.all[centerIndex].src;
 
+  rightCounter = rightIndex;
+  centerCounter = centerIndex;
+  leftCounter = leftIndex;
+
   Images.all[rightIndex].views++;
   Images.all[leftIndex].views++;
   Images.all[centerIndex].views++;
@@ -103,7 +107,7 @@ view.addEventListener('click', function dataView() {
     let item = document.createElement('li');
     list.appendChild(item);
     item.textContent = `${Images.all[i].name.split('.')[0]} had ${Images.all[i].clicker} votes, and was seen ${Images.all[i].views} times.`;
-    imageSection.removeEventListener('click',eventHandler);
+    
   }
 });
 
