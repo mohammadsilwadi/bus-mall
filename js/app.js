@@ -65,12 +65,10 @@ function eventHandler(e) {
   if((e.target.id === 'rightImage' || e.target.id === 'centerImage'|| e.target.id === 'leftImage') && counter < trys ){
 
     if (e.target.id === 'rightImage') {
-
       Images.all[rightCounter].clicker++;
     }
 
     else if (e.target.id === 'centerImage') {
-
       Images.all[centerCounter].clicker++;
     }
 
