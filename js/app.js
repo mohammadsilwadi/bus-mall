@@ -105,7 +105,6 @@ view.addEventListener('click', function dataView() {
     let item = document.createElement('li');
     list.appendChild(item);
     item.textContent = `${Images.all[i].name.split('.')[0]} had ${Images.all[i].clicker} votes, and was seen ${Images.all[i].views} times.`;
-    imageSection.removeEventListener('click',eventHandler);
   }
 });
 
