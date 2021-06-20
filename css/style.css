@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 960px;
+  margin: auto;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
+  gap: 20px;
+}
+img {
+  width: 100%;
+}
+header {
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+
+.main-section{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  
+}.imgAndText {
+  display: grid;
+  grid-template-rows: 1fr 200px;
+  gap: 20px;
+}
+
+.image-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  
+}
+img{height: 250px;
+}
