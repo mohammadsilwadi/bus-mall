@@ -91,8 +91,7 @@ function eventHandler(e) {
     counter++;
     render();
   }
-  else if (counter>=trys){
-    drawChart();}
+  
 }
 
 imageSection.addEventListener('click', eventHandler);
@@ -118,7 +117,7 @@ function dataView() {
     item.textContent = `${Images.all[i].name} had ${Images.all[i].clicker} votes, and was seen ${Images.all[i].views} times.`;
    
   }
-  
+  drawChart();
   view.removeEventListener('click', dataView);
 }
 
