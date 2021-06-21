@@ -52,7 +52,7 @@ do {
   do {
     centerIndex = randomNumber(0, imgArray.length - 1);
   } while( leftIndex === centerIndex || centerIndex === rightIndex || centerIndex === checkimg[0] || centerIndex === checkimg[1] || centerIndex === checkimg[2]);
-   console.log(leftIndex)
+   
   rightImage.src = Images.all[rightIndex].src;
   leftImage.src = Images.all[leftIndex].src;
   centerImage.src = Images.all[centerIndex].src;
