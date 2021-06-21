@@ -64,10 +64,11 @@ do {
   Images.all[rightIndex].views++;
   Images.all[leftIndex].views++;
   Images.all[centerIndex].views++;
-  console.log(checkimg)
+
    checkimg[0] = leftIndex;
    checkimg[1] = rightIndex;
    checkimg[2] = centerIndex;
+   console.log(checkimg);
    
 
 }
