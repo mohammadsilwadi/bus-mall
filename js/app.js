@@ -24,7 +24,7 @@ let trys=25;
 let rightCounter = 0;
 let centerCounter = 0;
 let leftCounter = 0;
-
+let checkimg=[21,205,301]
 function Images ( name,src ) {
   this.name = name;
   this.src = `./img/${src}`;
@@ -39,18 +39,20 @@ for( let i = 0; i < imgArray.length; i++ ) {
   new Images( imgArray[i].split( '.' )[0], imgArray[i] );
 }
 function render() {
-  let leftIndex = randomNumber(0, imgArray.length - 1);
+  let leftIndex ;
   let rightIndex;
   let centerIndex;
-
+do {
+  leftIndex = randomNumber(0, imgArray.length - 1);
+}while  ( leftIndex === checkimg[0] || leftIndex === checkimg[1] || leftIndex === checkimg[2]);
   do {
     rightIndex = randomNumber(0, imgArray.length - 1);
-  } while( leftIndex === rightIndex || centerIndex === rightIndex );
+  } while( leftIndex === rightIndex || centerIndex === rightIndex || rightIndex === checkimg[0] || rightIndex === checkimg[1] || rightIndex === checkimg[2]);
 
   do {
     centerIndex = randomNumber(0, imgArray.length - 1);
-  } while( leftIndex === centerIndex || centerIndex === rightIndex );
-
+  } while( leftIndex === centerIndex || centerIndex === rightIndex || centerIndex === checkimg[0] || centerIndex === checkimg[1] || centerIndex === checkimg[2]);
+   console.log(leftIndex)
   rightImage.src = Images.all[rightIndex].src;
   leftImage.src = Images.all[leftIndex].src;
   centerImage.src = Images.all[centerIndex].src;
@@ -62,6 +64,11 @@ function render() {
   Images.all[rightIndex].views++;
   Images.all[leftIndex].views++;
   Images.all[centerIndex].views++;
+  console.log(checkimg)
+   checkimg[0] = leftIndex;
+   checkimg[1] = rightIndex;
+   checkimg[2] = centerIndex;
+   
 
 }
 
@@ -76,12 +83,15 @@ function eventHandler(e) {
       Images.all[centerCounter].clicker++;
     }
 
-    else {
+    else if (e.target.id === 'leftImage'){
       Images.all[leftCounter].clicker++;
     }
+    
     counter++;
     render();
   }
+  else if (counter>=trys){
+    drawChart();}
 }
 
 imageSection.addEventListener('click', eventHandler);
@@ -100,17 +110,65 @@ function randomNumber( min, max ) {
 }
 
 
-
-
-view.addEventListener('click', function dataView() {
+function dataView() {
   for (let i = 0; i < imgArray.length; i++) {
     let item = document.createElement('li');
     list.appendChild(item);
     item.textContent = `${Images.all[i].name} had ${Images.all[i].clicker} votes, and was seen ${Images.all[i].views} times.`;
-    imageSection.removeEventListener('click',eventHandler);
+   
   }
-});
+  
+  view.removeEventListener('click', dataView);
+}
 
+view.addEventListener('click', dataView);
+
+
+function drawChart() {
+
+  let name = [];
+  let view = [];
+  let click=[];
+
+  for(let i = 0; i < Images.all.length; i++) {
+    name.push(Images.all[i].name);
+    view.push(Images.all[i].views);
+    click.push(Images.all[i].clicker);
+  }
+
+let ctx = document.getElementById( 'myChart' ).getContext( '2d' );
+
+  let myChart = new Chart( ctx, {
+    type: 'bar',
+    data: {
+      labels: name,
+      datasets: [{
+        label: '# of view',
+        data: view,
+        backgroundColor: ['rgb(119,136,153)'],
+        borderColor: ['rgb(119,136,153)'],
+          borderWidth: .5
+      },
+      {
+        label: '# of clicks',
+        data: click,
+        backgroundColor: ['	rgb(112,128,144))'],
+        borderColor: ['	rgb(112,128,144)'],
+        borderWidth: .5
+    }
+
+        ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  } );
+
+}
 
 
 
