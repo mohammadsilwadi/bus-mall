@@ -87,12 +87,21 @@ function eventHandler(e) {
     else if (e.target.id === 'leftImage'){
       Images.all[leftCounter].clicker++;
     }
-    
+    localStorage.setItem('pick', JSON.stringify(Images.all))
     counter++;
     render();
   }
   
 }
+
+function getData() {
+  let data = JSON.parse(localStorage.getItem('pick'));
+  if (data){
+    Images.all = data
+  }
+  render()
+  }
+  getData()
 
 imageSection.addEventListener('click', eventHandler);
 
